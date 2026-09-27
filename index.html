@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Lương Yến Nhi 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background trái tim bay -->
+    <div class="heart-background">
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+    </div>
+
+    <!-- KHUNG PHONG THƯ & THIỆP -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <!-- Vỏ bao thư (sẽ ẩn đi khi mở) -->
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="pocket"></div>
+        </div>
+
+        <!-- Tấm Thiệp Chính (Chỉ hiện thiệp khi mở) -->
+        <div class="letter">
+            <div class="card-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            
+            <h1 class="title">🎉 Happy Birthday 🎉</h1>
+            <h2 class="name">Lương Yến Nhi</h2>
+
+            <!-- Ảnh đại diện Yến Nhi -->
+            <div class="avatar-container">
+                <img src="z6395906803251_4a1f592cfdf70a64ef0f8e9ae91cd324.jpg" alt="Lương Yến Nhi" id="userAvatar">
+            </div>
+
+            <!-- Bánh kem 3 tầng & Thỏ Căn Giữa Chuẩn 100% -->
+            <div class="cake-container">
+                <!-- Nến 19 -->
+                <div class="candles">
+                    <div class="number-candle"><div class="flame"></div><span>1</span></div>
+                    <div class="number-candle"><div class="flame"></div><span>9</span></div>
+                </div>
+
+                <!-- Thỏ con đặt ở chính giữa đỉnh bánh -->
+                <div class="bunny-wrapper">
+                    <div class="cake-topper">
+                        <div class="bunny-ear left"></div>
+                        <div class="bunny-ear right"></div>
+                        <div class="topper-face">
+                            <span class="eye"></span>
+                            <span class="mouth">ω</span>
+                            <span class="eye"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khung Bánh Kem 3 Tầng -->
+                <div class="cake">
+                    <!-- Tầng trên -->
+                    <div class="layer layer-top">
+                        <div class="icing-blue"></div>
+                    </div>
+                    
+                    <!-- Tầng giữa -->
+                    <div class="layer layer-middle">
+                        <span class="cake-text">HAPPY</span>
+                        <div class="icing-blue"></div>
+                        <div class="cherry c1"></div>
+                        <div class="cherry c2"></div>
+                    </div>
+                    
+                    <!-- Tầng dưới -->
+                    <div class="layer layer-bottom">
+                        <span class="cake-text">YẾN NHI</span>
+                        <div class="icing-blue"></div>
+                        <div class="cherry c3"></div>
+                        <div class="cherry c4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lời chúc -->
+            <div class="wishes">
+                <p>🎂 Tuổi 19 luôn rạng rỡ, xinh đẹp, nhiều may mắn và đạt được mọi điều mình mơ ước nhé! 💖</p>
+            </div>
+
+            <!-- Nút bật quà -->
+            <div class="buttons">
+                <button id="wishBtn" onclick="openModal(event)">Bật quà sinh nhật 🎁</button>
+            </div>
+        </div>
+
+        <div class="open-instruction">👆 Bấm vào phong thư để mở 💌</div>
+    </div>
+
+    <!-- Bảng Popup (Modal) Nhập thông tin nhận quà -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>🎁 Nhận quà sinh nhật 🎁</h3>
+            <p>Vui lòng nhập thông tin để nhận quà nhé!</p>
+
+            <form id="giftForm" action="https://formspree.io/f/xyeznryr" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên:</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên..." required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ nhận quà:</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Nhập địa chỉ chi tiết..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Gửi thông tin 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById('envelopeWrapper');
+        wrapper.addEventListener('click', function(e) {
+            if(e.target.tagName === 'BUTTON' || e.target.closest('.modal') || e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            this.classList.add('open');
+        });
+
+        function openModal(e) {
+            e.stopPropagation();
+            document.getElementById('giftModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('giftModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('giftModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
