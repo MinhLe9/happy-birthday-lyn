@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Lương Yến Nhi 💕</title>
+    <style>
+        /* --- NỀN TỔNG THỂ --- */
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .hidden { display: none !important; }
+
+        /* --- 1. KHUNG PHONG THƯ --- */
+        #envelope-container {
+            cursor: pointer;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+        .envelope {
+            width: 300px; height: 200px;
+            background-color: #ffb6c1;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(255, 105, 135, 0.3);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .envelope::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            border-top: 100px solid #ff9a9e;
+            border-left: 150px solid transparent; border-right: 150px solid transparent;
+        }
+        .envelope-text {
+            margin-top: 20px; color: #ff4757; font-weight: bold; font-size: 18px;
+        }
+
+        /* --- 2. BẢNG NHẬP MẬT KHẨU --- */
+        #keypad-container {
+            background: rgba(255, 255, 255, 0.85); padding: 30px;
+            border-radius: 25px; box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
+            text-align: center; backdrop-filter: blur(5px); border: 3px dashed #ffb6c1;
+        }
+        .keypad-title { color: #ff4757; margin-top: 0; font-size: 22px; margin-bottom: 20px; }
+        .display {
+            width: 100%; height: 50px; background: #fff; border-radius: 15px; margin-bottom: 25px;
+            font-size: 28px; line-height: 50px; letter-spacing: 8px; color: #ff4757;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .key {
+            width: 65px; height: 65px; border-radius: 50%; border: none;
+            background: #ffb6c1; color: white; font-size: 24px; font-weight: bold;
+            cursor: pointer; transition: all 0.2s; box-shadow: 0 5px 15px rgba(255, 182, 193, 0.6);
+        }
+        .key:active { transform: scale(0.9); }
+        .key:hover { background: #ff9a9e; }
+        .key-action { background: #ffdae0; color: #ff4757; font-size: 16px;}
+        
+        @keyframes shake {
+            0%, 100% {transform: translateX(0);} 25% {transform: translateX(-10px);}
+            50% {transform: translateX(10px);} 75% {transform: translateX(-10px);}
+        }
+        .error { animation: shake 0.4s ease-in-out; border: 2px solid red; }
+
+        /* --- 3. BÁNH SINH NHẬT CSS ART CỰC XỊN --- */
+        #cake-container {
+            text-align: center;
+            animation: fadeInZoom 1.5s ease-out;
+        }
+        @keyframes fadeInZoom {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .cake-message {
+            font-size: 32px; color: #ff4757; margin-top: 10px;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+            font-weight: bold; font-family: 'Comic Sans MS', cursive, sans-serif;
+            position: relative; z-index: 10;
+        }
+
+        /* --- CHI TIẾT BÁNH CSS --- */
+        #cake-art { position: relative; width: 350px; height: 350px; margin: 0 auto 10px auto; }
+        
+        /* Đế bánh */
+        .plate { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 260px; height: 45px; background: #dcd0df; border-radius: 50%; box-shadow: 0 10px 15px rgba(0,0,0,0.15); z-index: 1; }
+        
+        /* Cấu trúc các tầng */
+        .tier { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 10px; z-index: 2; }
+        .tier::before { content: ''; position: absolute; top: -15px; left: 0; width: 100%; height: 30px; border-radius: 50%; z-index: 1; }
+        
+        .drip-container { position: absolute; top: -5px; left: 0; width: 100%; height: 100%; z-index: 5; }
+        .drip-container span { position: absolute; top: 0; border-radius: 0 0 25px 25px; background: inherit; }
+
+        /* Tầng 1 (Dưới cùng) */
+        .tier-1 { bottom: 30px; width: 220px; height: 75px; background: #ff4d6d; }
+        .tier-1::before { background: #ff708d; }
+        .tier-1 .drip-container span { background: #ffc4cf; }
+
+        /* Tầng 2 (Giữa) */
+        .tier-2 { bottom: 105px; width: 170px; height: 65px; background: #ffb3c1; z-index: 3; }
+        .tier-2::before { background: #ffc2ce; top: -12px; height: 24px; }
+        .tier-2 .drip-container span { background: #ffffff; }
+
+        /* Tầng 3 (Trên cùng) */
+        .tier-3 { bottom: 170px; width: 120px; height: 55px; background: #fff0f3; z-index: 4; }
+        .tier-3::before { background: #ffffff; top: -10px; height: 20px; }
+        .tier-3 .drip-container span { background: #ffffff; }
+
+        /* Hạt kẹo trang trí */
+        .spheres { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 6; pointer-events: none; }
+        .sphere { position: absolute; width: 16px; height: 16px; border-radius: 50%; box-shadow: inset -4px -4px 6px rgba(0,0,0,0.15); }
+
+        /* 5 Cây Nến & Lửa */
+        .candles-container { position: absolute; bottom: 225px; left: 50%; transform: translateX(-50%); width: 90px; height: 50px; z-index: 5; display: flex; justify-content: space-between; align-items: flex-end; }
+        .candle { width: 10px; height: 45px; background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff4d6d 4px, #ff4d6d 8px); border-radius: 3px; position: relative; }
+        .candle:nth-child(1) { height: 35px; } .candle:nth-child(2) { height: 45px; } .candle:nth-child(3) { height: 55px; } .candle:nth-child(4) { height: 45px; } .candle:nth-child(5) { height: 35px; }
+        .flame { position: absolute; top: -18px; left: -2.5px; width: 15px; height: 20px; background: #ffb703; border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%; animation: flicker 0.6s infinite alternate; box-shadow: 0 0 10px rgba(255, 183, 3, 0.8); }
+        .flame::after { content: ''; position: absolute; bottom: 2px; left: 3px; width: 9px; height: 10px; background: #fff3b0; border-radius: 50%; }
+        @keyframes flicker { 0% { transform: scale(1) rotate(-3deg); } 100% { transform: scale(1.1) rotate(3deg); } }
+
+        /* Hộp quà */
+        .gift { position: absolute; bottom: 15px; width: 55px; height: 50px; background: #ff9eb5; border-radius: 5px; z-index: 6; box-shadow: 3px 3px 10px rgba(0,0,0,0.15); }
+        .gift.left { left: 10px; } .gift.right { right: 10px; background: #ffc4cf; }
+        .ribbon-v { position: absolute; left: 50%; transform: translateX(-50%); width: 10px; height: 100%; background: #ffcf59; }
+        .ribbon-h { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; height: 10px; background: #ffcf59; }
+        .bow { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 26px; height: 12px; display: flex; justify-content: space-between; }
+        .bow::before, .bow::after { content: ''; width: 12px; height: 12px; border: 3px solid #ffcf59; border-radius: 50% 50% 0 50%; transform: rotate(45deg); }
+        .bow::after { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+
+        /* Bóng bay trái tim */
+        .balloon { position: absolute; z-index: 0; animation: float 3s ease-in-out infinite alternate; }
+        .balloon.left { top: 30px; left: 15px; } .balloon.right { top: 50px; right: 15px; animation-delay: -1.5s; }
+        .heart { position: relative; width: 45px; height: 45px; background: #ff4d6d; transform: rotate(45deg); box-shadow: inset -8px -8px 15px rgba(0,0,0,0.15); }
+        .heart::before, .heart::after { content: ''; position: absolute; width: 45px; height: 45px; background: #ff4d6d; border-radius: 50%; }
+        .heart::before { top: -22.5px; left: 0; } .heart::after { top: 0; left: -22.5px; }
+        .string { position: absolute; width: 2px; height: 90px; background: #dca6af; bottom: -85px; left: 22px; transform: rotate(-45deg); transform-origin: top; }
+        
+        @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-20px); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    </style>
+</head>
+<body>
+
+    <!-- 1. GIAO DIỆN PHONG THƯ -->
+    <div id="envelope-container" onclick="openEnvelope()">
+        <div class="envelope"></div>
+        <div class="envelope-text">👇 Bấm vào phong thư để mở ❤️</div>
+    </div>
+
+    <!-- 2. BẢNG NHẬP MẬT KHẨU -->
+    <div id="keypad-container" class="hidden">
+        <h2 class="keypad-title">Nhập mật khẩu sinh nhật nha 🎂</h2>
+        <div id="password-display" class="display"></div>
+        <div class="keypad">
+            <button class="key" onclick="press('1')">1</button>
+            <button class="key" onclick="press('2')">2</button>
+            <button class="key" onclick="press('3')">3</button>
+            <button class="key" onclick="press('4')">4</button>
+            <button class="key" onclick="press('5')">5</button>
+            <button class="key" onclick="press('6')">6</button>
+            <button class="key" onclick="press('7')">7</button>
+            <button class="key" onclick="press('8')">8</button>
+            <button class="key" onclick="press('9')">9</button>
+            <button class="key key-action" onclick="clearPass()">Xóa</button>
+            <button class="key" onclick="press('0')">0</button>
+            <button class="key key-action" onclick="checkPass()">Mở</button>
+        </div>
+    </div>
+
+    <!-- 3. HIỂN THỊ BÁNH SINH NHẬT CSS ART -->
+    <div id="cake-container" class="hidden">
+        <div id="cake-art">
+            <!-- Bóng bay trái tim -->
+            <div class="balloon left"><div class="heart"></div><div class="string"></div></div>
+            <div class="balloon right"><div class="heart"></div><div class="string"></div></div>
+
+            <!-- Quà tặng -->
+            <div class="gift left"><div class="ribbon-v"></div><div class="ribbon-h"></div><div class="bow"></div></div>
+            <div class="gift right"><div class="ribbon-v"></div><div class="ribbon-h"></div><div class="bow"></div></div>
+
+            <div class="plate"></div>
+
+            <!-- Bánh Tầng 1 -->
+            <div class="tier tier-1">
+                <div class="drip-container">
+                    <span style="left: 0; width: 25%; height: 35px;"></span>
+                    <span style="left: 20%; width: 30%; height: 55px;"></span>
+                    <span style="left: 45%; width: 25%; height: 30px;"></span>
+                    <span style="left: 65%; width: 25%; height: 45px;"></span>
+                    <span style="left: 85%; width: 15%; height: 30px;"></span>
+                </div>
+                <div class="spheres">
+                    <div class="sphere" style="bottom: 10px; left: 20px; background: #ffd166;"></div>
+                    <div class="sphere" style="bottom: 15px; right: 30px; background: #fff;"></div>
+                    <div class="sphere" style="bottom: 5px; right: 10px; background: #ffd166;"></div>
+                </div>
+            </div>
+
+            <!-- Bánh Tầng 2 -->
+            <div class="tier tier-2">
+                <div class="drip-container">
+                    <span style="left: 0; width: 30%; height: 30px;"></span>
+                    <span style="left: 25%; width: 40%; height: 45px;"></span>
+                    <span style="left: 60%; width: 30%; height: 25px;"></span>
+                    <span style="left: 80%; width: 20%; height: 40px;"></span>
+                </div>
+                <div class="spheres">
+                    <div class="sphere" style="bottom: 10px; left: 40px; background: #ff4d6d;"></div>
+                    <div class="sphere" style="bottom: 5px; right: 20px; background: #ffd166;"></div>
+                </div>
+            </div>
+
+            <!-- Bánh Tầng 3 -->
+            <div class="tier tier-3">
+                <div class="drip-container">
+                    <span style="left: 0; width: 35%; height: 25px;"></span>
+                    <span style="left: 30%; width: 45%; height: 35px;"></span>
+                    <span style="left: 70%; width: 30%; height: 20px;"></span>
+                </div>
+                <div class="spheres">
+                    <div class="sphere" style="bottom: 10px; left: 30px; background: #ffb3c1;"></div>
+                    <div class="sphere" style="bottom: 15px; right: 25px; background: #ffb3c1;"></div>
+                </div>
+            </div>
+
+            <!-- Nến sinh nhật -->
+            <div class="candles-container">
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+            </div>
+        </div>
+        <div class="cake-message">Happy Birthday Lương Yến Nhi! 💕</div>
+    </div>
+
+    <!-- MÃ JAVASCRIPT XỬ LÝ LOGIC -->
+    <script>
+        let pass = "";
+        const correctPass = "3011";
+
+        function openEnvelope() {
+            document.getElementById('envelope-container').classList.add('hidden');
+            document.getElementById('keypad-container').classList.remove('hidden');
+        }
+
+        function press(num) {
+            if (pass.length < 4) {
+                pass += num;
+                updateDisplay();
+            }
+            if (pass.length === 4) {
+                setTimeout(checkPass, 250); 
+            }
+        }
+
+        function updateDisplay() {
+            let displayString = "";
+            for(let i=0; i<pass.length; i++) displayString += "🌸"; 
+            document.getElementById('password-display').innerText = displayString;
+        }
+
+        function clearPass() {
+            pass = "";
+            updateDisplay();
+            document.getElementById('password-display').classList.remove('error');
+        }
+
+        function checkPass() {
+            if(pass.length === 0) return; 
+
+            if (pass === correctPass) {
+                document.getElementById('keypad-container').classList.add('hidden');
+                document.getElementById('cake-container').classList.remove('hidden');
+            } else {
+                const display = document.getElementById('password-display');
+                display.classList.add('error');
+                setTimeout(() => clearPass(), 500); 
+            }
+        }
+    </script>
+
+</body>
+</html>
