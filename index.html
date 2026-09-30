@@ -84,6 +84,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 .flame{position:absolute;top:-16px;left:-3px;width:14px;height:18px;background:#ffb703;border-radius:50% 50% 30% 30%/60% 60% 40% 40%;box-shadow:0 0 12px #ffb703;animation:fl .5s infinite alternate}
 @keyframes fl{to{transform:scale(1.12) rotate(4deg)}}
 .cake .h{position:absolute;font-size:18px}
+.age{position:absolute;left:-4px;top:-8px;width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#ff86a8,#ff4f83);color:#fff;font:700 30px/62px var(--script);text-align:center;box-shadow:0 6px 12px rgba(255,79,131,.4);border:3px solid #fff;transform:rotate(-12deg);z-index:5}
 
 .side{display:flex;flex-direction:column;gap:14px;align-items:center}
 .photo{width:190px;height:220px;padding:10px 10px 32px;background:#fff;border-radius:6px;box-shadow:0 10px 22px rgba(176,36,90,.28);transform:rotate(-3deg);cursor:pointer;position:relative;border:0}
@@ -91,13 +92,17 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 .photo::after{content:'📌';position:absolute;top:-14px;left:50%;font-size:24px}
 .wish{background:var(--p4);border:2px solid var(--p3);border-radius:18px;padding:14px 16px;font-family:var(--script);font-size:23px;line-height:1.35;font-weight:600}
 
-.music{width:100%;max-width:300px;background:linear-gradient(135deg,#ffe3ee,#ffc2d9);border-radius:20px;padding:12px;box-shadow:0 8px 18px rgba(255,92,138,.25);text-align:left}
-.music b{font-size:14px}
-.music .row{display:flex;gap:6px;margin-top:8px}
-.music input{flex:1;min-width:0;border:2px solid var(--p3);border-radius:12px;padding:7px 10px;font:500 13px var(--font);color:var(--ink)}
-.music button{border:0;border-radius:12px;background:var(--p2);color:#fff;font-weight:700;padding:0 12px}
-.music .play{width:38px;height:38px;border-radius:50%;font-size:16px;padding:0;flex:none}
-.eq{display:inline-block;margin-left:6px}
+/* khung nhạc */
+.music{width:100%;max-width:320px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#ffe3ee,#ffc2d9);border-radius:22px;padding:12px 14px;box-shadow:0 8px 18px rgba(255,92,138,.25);text-align:left}
+.cover{width:64px;height:64px;flex:none;border-radius:50%;background:#fff center/cover no-repeat;border:3px solid #fff;box-shadow:0 4px 10px rgba(176,36,90,.3);display:grid;place-items:center;font-size:26px}
+.cover.spin{animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.info{flex:1;min-width:0}
+.info b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.info small{font-weight:500;font-size:12px}
+.bar{height:5px;border-radius:5px;background:#fff9;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--p2)}
+.play{width:44px;height:44px;flex:none;border:0;border-radius:50%;background:var(--p2);color:#fff;font-size:18px;box-shadow:0 4px 0 #d13c6b}
 
 .gift-btn{margin-top:26px;border:0;border-radius:999px;padding:15px 34px;background:linear-gradient(135deg,#ff86a8,#ff4f83);color:#fff;font-size:18px;font-weight:700;box-shadow:0 8px 0 #d13c6b,0 14px 22px rgba(255,79,131,.4);animation:pulse 1.6s infinite}
 .gift-btn:active{transform:translateY(6px);box-shadow:0 2px 0 #d13c6b}
@@ -115,7 +120,6 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 .send:disabled{opacity:.6}
 .close{position:absolute;right:12px;top:10px;border:0;background:none;font-size:22px;color:var(--p2)}
 .status{text-align:center;font-weight:700;margin-top:12px;min-height:20px}
-.age{position:absolute;left:-4px;top:-8px;width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#ff86a8,#ff4f83);color:#fff;font:700 30px/62px var(--script);text-align:center;box-shadow:0 6px 12px rgba(255,79,131,.4);border:3px solid #fff;transform:rotate(-12deg)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -158,7 +162,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
     <div class="sub">🎈 Chúc mừng sinh nhật bánh rán tuổi 19 🎈</div>
     <div class="grid">
       <div>
-       <div class="cake" aria-label="Bánh kem sinh nhật">
+        <div class="cake" aria-label="Bánh kem sinh nhật">
           <div class="age">19</div>
           <span class="h" style="left:6px;top:60px">💗</span><span class="h" style="right:6px;top:40px">🎀</span>
           <div class="candles"><div class="candle"><i class="flame"></i></div><div class="candle" style="height:42px"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div></div>
@@ -174,12 +178,13 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 
     <div style="margin-top:22px;display:flex;justify-content:center">
       <div class="music">
-        <b>🎵 Nhạc LYN  <span class="eq" id="eq"></span></b>
-        <div class="row">
-          <input id="musicUrl" type="url" placeholder="Dán link nhạc (.mp3) vào đây" aria-label="Link nhạc">
-          <button id="musicLoad">Tải</button>
-          <button class="play" id="musicPlay" aria-label="Phát/Dừng">▶</button>
+        <div class="cover" id="cover">🎵</div>
+        <div class="info">
+          <b id="songTitle"></b>
+          <small id="songArtist"></small>
+          <div class="bar"><i id="barFill"></i></div>
         </div>
+        <button class="play" id="musicPlay" aria-label="Phát hoặc dừng nhạc">▶</button>
       </div>
     </div>
     <audio id="audio" loop></audio>
@@ -206,8 +211,11 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 <script>
 /* ===== CẤU HÌNH (sửa tại đây) ===== */
 const PASSWORD = "3011";
-const DEFAULT_PHOTO = "nhi.jpg";  // dán link ảnh mặc định vào đây (tùy chọn)
-const DEFAULT_MUSIC = "Verse 1 .mp3";  // dán link nhạc .mp3 mặc định vào đây (tùy chọn)
+const DEFAULT_PHOTO = "nhi.jpg";        // ảnh trong khung polaroid
+const DEFAULT_MUSIC = "Verse 1 .mp3";   // file nhạc (nên đổi tên thành verse1.mp3 cho an toàn)
+const DEFAULT_COVER = "cover.jpg";      // ảnh bìa bài hát (tải lên cùng thư mục với index.html)
+const SONG_TITLE = "Verse 1";           // tên bài hát hiển thị
+const SONG_ARTIST = "LYN";              // tên ca sĩ hiển thị
 
 const $ = id => document.getElementById(id);
 const show = id => { document.querySelectorAll('main').forEach(m => m.classList.add('hidden')); $(id).classList.remove('hidden'); };
@@ -251,20 +259,18 @@ if (DEFAULT_PHOTO) setPhoto(DEFAULT_PHOTO);
 $('photoBtn').onclick = () => $('photoFile').click();
 $('photoFile').onchange = e => { const f = e.target.files[0]; if (f) setPhoto(URL.createObjectURL(f)); };
 
-/* 3: nhạc từ đường dẫn ngoài */
+/* 3: nhạc do bạn chọn sẵn */
 const audio = $('audio');
-const setPlaying = on => { $('musicPlay').textContent = on ? "⏸" : "▶"; $('eq').textContent = on ? "🎶" : ""; };
-function loadMusic(url) {
-  if (!url) return;
-  audio.src = url;
-  audio.play().then(() => setPlaying(true)).catch(() => { setPlaying(false); alert("Không phát được link này. Hãy dùng link trực tiếp tới file .mp3 nhé 🎵"); });
-}
-if (DEFAULT_MUSIC) { $('musicUrl').value = DEFAULT_MUSIC; audio.src = DEFAULT_MUSIC; }
-$('musicLoad').onclick = () => loadMusic($('musicUrl').value.trim());
+audio.src = encodeURI(DEFAULT_MUSIC);
+$('songTitle').textContent = SONG_TITLE;
+$('songArtist').textContent = SONG_ARTIST;
+if (DEFAULT_COVER) { $('cover').style.backgroundImage = `url("${DEFAULT_COVER}")`; $('cover').textContent = ""; }
+const setPlaying = on => { $('musicPlay').textContent = on ? "⏸" : "▶"; $('cover').classList.toggle('spin', on); };
 $('musicPlay').onclick = () => {
-  if (!audio.src) return loadMusic($('musicUrl').value.trim());
-  if (audio.paused) audio.play().then(() => setPlaying(true)); else { audio.pause(); setPlaying(false); }
+  if (audio.paused) audio.play().then(() => setPlaying(true)).catch(() => alert("Không phát được nhạc, kiểm tra lại tên file nhé 🎵"));
+  else { audio.pause(); setPlaying(false); }
 };
+audio.ontimeupdate = () => { if (audio.duration) $('barFill').style.width = (audio.currentTime / audio.duration * 100) + '%'; };
 
 /* 4: form nhận quà → Formspree → Gmail */
 $('giftBtn').onclick = () => $('overlay').classList.remove('hidden');
