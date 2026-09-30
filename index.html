@@ -115,6 +115,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 .send:disabled{opacity:.6}
 .close{position:absolute;right:12px;top:10px;border:0;background:none;font-size:22px;color:var(--p2)}
 .status{text-align:center;font-weight:700;margin-top:12px;min-height:20px}
+.age{position:absolute;left:-4px;top:-8px;width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#ff86a8,#ff4f83);color:#fff;font:700 30px/62px var(--script);text-align:center;box-shadow:0 6px 12px rgba(255,79,131,.4);border:3px solid #fff;transform:rotate(-12deg)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -124,7 +125,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 
 <!-- 1. PHONG THƯ -->
 <main id="env-scene" class="scene">
-  <h1 class="env-title">Có một lá thư dành cho bạn 💌</h1>
+  <h1 class="env-title">Có một lá thư bánh cam dành cho bánh rán 💌</h1>
   <button class="envelope" id="envelope" aria-label="Mở phong thư">
     <div class="letter">💗</div>
     <div class="env-body"><div class="lace"></div></div>
@@ -154,10 +155,11 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
 <main id="card-scene" class="scene hidden">
   <section class="panel card">
     <h1>Happy Birthday Lương Yến Nhi 💕</h1>
-    <div class="sub">🎈 Chúc mừng sinh nhật 🎈</div>
+    <div class="sub">🎈 Chúc mừng sinh nhật bánh rán tuổi 19 🎈</div>
     <div class="grid">
       <div>
-        <div class="cake" aria-label="Bánh kem sinh nhật">
+       <div class="cake" aria-label="Bánh kem sinh nhật">
+          <div class="age">19</div>
           <span class="h" style="left:6px;top:60px">💗</span><span class="h" style="right:6px;top:40px">🎀</span>
           <div class="candles"><div class="candle"><i class="flame"></i></div><div class="candle" style="height:42px"><i class="flame"></i></div><div class="candle"><i class="flame"></i></div></div>
           <div class="tier t3"></div><div class="tier t2"></div><div class="tier t1"></div><div class="plate"></div>
@@ -166,7 +168,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
       <div class="side">
         <button class="photo" id="photoBtn" aria-label="Thêm ảnh"><div class="in" id="photoIn">📷 Bấm để thêm ảnh của bạn</div></button>
         <input type="file" id="photoFile" accept="image/*" hidden>
-        <div class="wish">Chúc bạn tuổi mới thật nhiều niềm vui, sức khỏe và những điều dịu dàng nhất. Mong mọi ước mơ của bạn đều nở hoa nhé! 🌷</div>
+        <div class="wish">Chúc Bánh Rán tuổi mới thật nhiều niềm vui, sức khỏe và những điều dịu dàng nhất. Mong mọi ước mơ của bạn đều nở hoa nhé! 🌷</div>
       </div>
     </div>
 
@@ -193,7 +195,7 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--ink);outline-of
     <h2>Nhận quà thôi 🎁</h2>
     <p>Điền tên và địa chỉ để quà bay đến bạn nhé</p>
     <label for="fname">Họ và tên</label>
-    <input id="fname" name="name" required autocomplete="name" placeholder="Lương Yến Nhi">
+    <input id="fname" name="name" required autocomplete="name" placeholder="">
     <label for="faddr">Địa chỉ nhận quà</label>
     <textarea id="faddr" name="address" required autocomplete="street-address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
     <button class="send" id="sendBtn" type="submit">Gửi đi 💌</button>
@@ -274,7 +276,7 @@ $('giftForm').addEventListener('submit', async e => {
   try {
     const r = await fetch(e.target.action, { method: "POST", body: new FormData(e.target), headers: { Accept: "application/json" } });
     if (!r.ok) throw new Error();
-    st.textContent = "Đã gửi thành công! Quà sắp đến với bạn 💖";
+    st.textContent = "Đã gửi thành công! Quà sắp đến với bánh rán đó chờ nhé 💖";
     e.target.reset();
     setTimeout(() => $('overlay').classList.add('hidden'), 2500);
   } catch { st.textContent = "Gửi chưa được, bạn thử lại nhé."; }
